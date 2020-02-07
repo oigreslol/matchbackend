@@ -21,9 +21,13 @@ public class CityService {
         return StreamSupport.stream(cityRepository.findAll().spliterator(), false)
                             .collect(Collectors.toList());
     }
-    
+
     public City createCity(City city) {
         return cityRepository.save(city);
+    }
+
+    public City findById(int id) {
+        return cityRepository.findById(id).get();
     }
 
     public Optional<City> findOneCity(City city) {
