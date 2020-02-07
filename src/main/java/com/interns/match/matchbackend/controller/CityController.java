@@ -1,69 +1,55 @@
 package com.interns.match.matchbackend.controller;
 
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import com.interns.match.matchbackend.model.dto.CityDto;
+import com.interns.match.matchbackend.model.entity.City;
+import com.interns.match.matchbackend.service.CityService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import com.interns.match.matchbackend.model.dto.UpdateDto;
-import com.interns.match.matchbackend.model.dto.UpdateDtoName;
-import com.interns.match.matchbackend.model.entity.Country;
-import com.interns.match.matchbackend.service.CountryService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-
-
 
 @RestController
-public class MainController{
+public class CityController {
 
     @Autowired
-    private CountryService countryService;
+    private CityService cityService;
 
-    @GetMapping(value = "/")
-    public String requestMethodName() {
-        return new String("MatchBACKEND WELCOMER");
+
+    @GetMapping(value="/city/all")
+    public List<City> getAllCountries() {
+        return cityService.findCities();
     }
 
-    @GetMapping(value="/country/all")
-    public List<Country> getAllCountries() {
-        return countryService.findCountries();
-    }
-
-    @PostMapping(value="/country/create")
-    public Country createCountry(@RequestBody Country country) {
-        country = countryService.createCountry(country);
-        System.out.println(country);
-        return country;
+    @PostMapping(value="/city/create")
+    public City createCity(@RequestBody City city) {
+        city = cityService.createCity(city);
+        System.out.println(city);
+        return city;
     }
     
-    @RequestMapping(value="/country/deletebyid", method = RequestMethod.DELETE)
-    public HttpStatus deleteCountryById(@RequestBody int id) {
-        countryService.deleteCountryById(id);
+    @RequestMapping(value="/city/deletebyid", method = RequestMethod.DELETE)
+    public HttpStatus deleteCityById(@RequestBody int id) {
+        cityService.deleteCityById(id);
         return HttpStatus.OK;
     }
 
-    @RequestMapping(value="/country/deletebyname", method = RequestMethod.DELETE)
-    public HttpStatus deleteCountryByName(@RequestBody String name) {
-        countryService.deleteCountryByName(name);
+    @RequestMapping(value="/city/deletebyname", method = RequestMethod.DELETE)
+    public HttpStatus deleteCityByName(@RequestBody String name) {
+        cityService.deleteCityByName(name);
         return HttpStatus.OK;
     }
 
 
-    @RequestMapping(value="/country/updatebyid", method = RequestMethod.PUT)
-    public Country updateCountryById(@RequestBody UpdateDto dto) {
-        return countryService.updateCountryById(dto);
+    @RequestMapping(value="/city/updatebyid", method = RequestMethod.PUT)
+    public City updateCityById(@RequestBody CityDto dto) {
+        return cityService.updateCityById(dto);
     }
 
-    @RequestMapping(value="/country/updatebyname", method = RequestMethod.PUT)
-    public Country updateCountryByName(@RequestBody UpdateDtoName dto) {
-        return countryService.updateCountryByName(dto);
+    @RequestMapping(value="/city/updatebyname", method = RequestMethod.PUT)
+    public City updateCityByName(@RequestBody CityDto dto) {
+        return cityService.updateCityByName(dto);
     }
 
     

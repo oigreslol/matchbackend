@@ -31,7 +31,7 @@ public class MainController{
         return new String("MatchBACKEND WELCOMER");
     }
 
-    @GetMapping(value="/contry/all")
+    @GetMapping(value="/country/all")
     public List<Country> getAllCountries() {
         return countryService.findCountries();
     }
