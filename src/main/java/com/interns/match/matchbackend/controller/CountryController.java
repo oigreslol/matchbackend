@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 import java.util.Optional;
 
+import com.interns.match.matchbackend.model.dto.CreateCountryDto;
 import com.interns.match.matchbackend.model.dto.UpdateDto;
 import com.interns.match.matchbackend.model.dto.UpdateDtoName;
 import com.interns.match.matchbackend.model.entity.Country;
@@ -49,7 +50,7 @@ public class CountryController{
     }
 
     @PostMapping(path="/country/create")
-    public ResponseEntity<Country> createCountry(@RequestBody Country country) {
+    public ResponseEntity<Country> createCountry(@RequestBody CreateCountryDto country) {
         return ResponseEntity.ok(countryService.createCountry(country));
     }
     

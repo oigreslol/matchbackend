@@ -26,6 +26,10 @@ public class PlayerService{
                             .collect(Collectors.toList());
     }
 
+    public List<Player> findAllCountryPlayer(int country){
+        return StreamSupport.stream(playerRepository.findByCountry(country).spliterator(), false).collect(Collectors.toList());
+    }
+
     public Player findPlayerByName(String name){
         return playerRepository.findByName(name);
     }
@@ -44,7 +48,7 @@ public class PlayerService{
         Player playerFinded = playerRepository.findById(player.getId()).get();
         playerFinded.setName(player.getName());
         playerFinded.setLastName(player.getLastName());
-        playerFinded.setCity(player.getCity());
+        playerFinded.setCountry(player.getCountry());
         return playerRepository.save(playerFinded);
     }
 

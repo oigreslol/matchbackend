@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import lombok.Data;
 
 @Entity
-@Table(name = "PLAYER")
+@Table(name = "PLAYERS")
 @Data
 public class Player{
 
@@ -20,7 +20,7 @@ public class Player{
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "CITY")
-    private int city;
+    @Column(name = "COUNTRY")
+    private int country;
 
 }

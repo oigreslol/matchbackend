@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import java.util.stream.StreamSupport;
+
+import com.interns.match.matchbackend.model.dto.CreateCountryDto;
 import com.interns.match.matchbackend.model.dto.UpdateDto;
 import com.interns.match.matchbackend.model.dto.UpdateDtoName;
 import com.interns.match.matchbackend.model.entity.Country;
@@ -23,7 +25,9 @@ public class CountryService {
                             .collect(Collectors.toList());
     }
 
-    public Country createCountry(Country country) {
+    public Country createCountry(CreateCountryDto countryDto) {
+        Country country = new Country();
+        country.setName(countryDto.getName());
         return countryRepository.save(country);
     }
 

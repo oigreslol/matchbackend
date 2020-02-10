@@ -36,6 +36,16 @@ public class PlayerController{
                                         .orElseThrow(() -> new Exception("No Player Found")));
     }
 
+
+    @GetMapping(path = "/player/country/{country}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Player>> findByNationality(@PathVariable(value = "country") int country) throws Exception {
+        return ResponseEntity.ok(
+        Optional.ofNullable(playerService.findAllCountryPlayer(country))
+                                        .orElseThrow(() -> new Exception("No Player's nationality Found")));
+    }
+
+    
+
     @PostMapping(path="/player/create")
     public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
         return ResponseEntity.ok(playerService.createPlayer(player));
@@ -60,6 +70,6 @@ public class PlayerController{
     public ResponseEntity<Player> updateCountryByName(@RequestBody Player player) throws Exception {
         return ResponseEntity.ok(
             Optional.ofNullable(playerService.updatePlayerAll(player))
-                    .orElseThrow(() -> new Exception("No Match Found")));
+                    .orElseThrow(() -> new Exception("No player Found")));
     }
 }
