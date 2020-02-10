@@ -45,19 +45,19 @@ public class PlayerController{
     public ResponseEntity<String> deletePlayerById(@PathVariable(value = "id") int id) {
         try {
             playerService.deletePlayerById(id);
-            return ResponseEntity.ok("200: Deleted Completly");
+            return ResponseEntity.ok("200: Deleted Completely");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @RequestMapping(path="/player/updatename", method = RequestMethod.PUT)
-    public Player updateCountryById(@RequestBody UpdateDtoId dto) {
+    public Player updatePlayerByName(@RequestBody UpdateDtoId dto) {
         return playerService.updatePlayerName(dto);
     }
 
     @RequestMapping(path="/player/updateall", method = RequestMethod.PUT)
-    public ResponseEntity<Player> updateCountryByName(@RequestBody Player player) throws Exception {
+    public ResponseEntity<Player> updatePlayerAll(@RequestBody Player player) throws Exception {
         return ResponseEntity.ok(
             Optional.ofNullable(playerService.updatePlayerAll(player))
                     .orElseThrow(() -> new Exception("No Match Found")));
